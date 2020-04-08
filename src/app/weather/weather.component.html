@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="">Weather App</a>
+  </nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md"><h3 class="text-center my-4">Weather Checker</h3>
+        <form
+            [formGroup]="weatherSearchForm" (ngSubmit)="sendToAPIXU(weatherSearchForm.value)">
+            <div class="form-group">
+                <input 
+                class="form-control" 
+                type="text" 
+                id="weatherLocation"
+                aria-describedby="weatherLocation"
+                placeholder="Enter Location here"
+                formControlName="location"/>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-md">
+                    Submit </button>
+                <button style="background: lightgray" type="reset" class="btn btn-default btn-md">
+                    Clear </button>
+            </div>
+        </form>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <div *ngIf="weatherData" class="col-md"><h3 class="text-center my-4">{{this.weatherData?.location.name}}</h3>
+        <p class="text-center"><img src="{{this.weatherData?.current.weather_icons}}"> </p>
+        <p class="text-center">{{this.weatherData?.current.weather_descriptions}} </p>
+        <p class="text-center">{{this.weatherData?.current.temperature}} Celsius</p>
+        <!-- <p class="text-center">Feels Like: {{this.weatherData?.current.feelslike}} Celsius</p> -->
+        <p class="text-center">{{this.weatherData?.location.name}}, {{this.weatherData?.location.region}}</p>
+        <p class="text-center">{{this.weatherData?.location.country}}</p>
+    </div>
+</div>
